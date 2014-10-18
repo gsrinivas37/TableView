@@ -8,7 +8,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate {
+    
+    @IBAction func onButtonPressed(sender: AnyObject) {
+        family.append("Sravanthi")
+        tableView.reloadData()
+    }
+    
+    @IBOutlet weak var tableView: UITableView!
+    var family = ["Seenu", "Nalini", "Narahari", "Lalitha"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +27,19 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return family.count
+    }
+    
+   
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "cell")
+        
+        cell.textLabel?.text = family[indexPath.row]
+        
+        return cell
+    }
 }
 
